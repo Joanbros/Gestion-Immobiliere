@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Gestion_Immobilière.Controller;
+using Gestion_Immobilière.View.Forms;
 
 namespace Gestion_Immobilière.View.SubViews
 {
@@ -23,7 +24,7 @@ namespace Gestion_Immobilière.View.SubViews
         {
             InitializeComponent();
             this.LeftFrame.Navigate(new ListBienView());
-            this.RightFrame.Navigate(new FormBienView());
+            this.RightFrame.Navigate(new GererBienForm());
         }
 
         private void Frame_Navigated(object sender, NavigationEventArgs e)

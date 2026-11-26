@@ -9,6 +9,11 @@ namespace Gestion_Immobilière.Data.Models
     public class Box : Bien
     {
         public int BoxId { get; set; }
+
+        public Box()
+        {
+        }
+
         public Box(string unNom, int uneValeur, string uneAdresse, int uneSurface)
             :base(unNom, uneValeur, uneAdresse, uneSurface)
         {

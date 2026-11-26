@@ -9,6 +9,23 @@
       Title="GererBienForm">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ComboBox x:Name="cboTypesBien"
+                  Grid.Row="0"
+                  Height="30"
+                  Margin="10"
+                  SelectedIndex="0"
+                  SelectionChanged="CboTypesBien_SelectionChanged">
+            <ComboBoxItem Content="Box" Tag="Box"/>
+        </ComboBox>
+
+        <Frame x:Name="frmBien"
+               Grid.Row="1"
+               NavigationUIVisibility="Hidden"
+               Margin="10,0,10,10"/>
     </Grid>
 </Page>

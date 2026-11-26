@@ -1,26 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
 
 namespace Gestion_Immobilière.View.Forms
 {
     /// <summary>
-    /// Logique d'interaction pour GererBienForm.xaml
+    /// Permet de choisir le type de bien puis d'afficher son formulaire.
     /// </summary>
     public partial class GererBienForm : Page
     {
         public GererBienForm()
         {
             InitializeComponent();
+
+            frmBien.Navigate(new GererBoxForm());
+        }
+
+        private void CboTypesBien_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cboTypesBien.SelectedIndex == 0 && frmBien != null)
+            {
+                frmBien.Navigate(new GererBoxForm());
+            }
         }
     }
 }
