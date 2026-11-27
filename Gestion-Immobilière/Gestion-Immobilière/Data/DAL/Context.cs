@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Gestion_Immobilière.Data.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using Gestion_Immobilière.Data.Models;
 
 namespace Gestion_Immobilière.Data.DAL
 {
@@ -12,6 +13,9 @@ namespace Gestion_Immobilière.Data.DAL
         public DbSet<Bail> Bails { get; set; }
         public DbSet<Intervention> Interventions { get; set; }
         public DbSet<Pret> Prets { get; set; }
+        public DbSet<Locataire> Locataires { get; set; }
+        public DbSet<Prestataire> Prestataires { get; set; }
+
 
         public Context()
         {
@@ -23,11 +27,16 @@ namespace Gestion_Immobilière.Data.DAL
         =>
         optionsBuilder.UseNpgsql("Host=localhost;Database=GestImmo;" +
             "Username=postgres;Password=postgres");
-    }
 
-    public class Blog
-    {
-        public int BlogId { get; set; }
-        public string Name { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Logement>().ToTable("Logement");
+            modelBuilder.Entity<Maison>().ToTable("Maison");
+            modelBuilder.Entity<Box>().ToTable("Box");
+            modelBuilder.Entity<Appartement>().ToTable("Appartment");
+
+        }
     }
 }

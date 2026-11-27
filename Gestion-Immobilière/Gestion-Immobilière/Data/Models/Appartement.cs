@@ -11,6 +11,11 @@ namespace Gestion_Immobilière.Data.Models
         public int Assenceur { get; set; }
         public bool ChauffCommun { get; set; }
 
+        public Appartement()
+        {
+
+        }
+
         public Appartement(string unNom, int uneValeur, string uneAdresse, int uneSurfrace, int unNbPieces, int unNbChambre, bool uneCave, bool unParking, int unEtage, int unAssenceur, bool unChauffCommun)
             :base(unNom, uneValeur, uneAdresse, uneSurfrace, unNbPieces, unNbChambre, uneCave, unParking)
         {

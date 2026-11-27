@@ -38,14 +38,20 @@ namespace Gestion_Immobilière.Data.Models
             double loyerTotal = 0;
             double mensualiteTotal = 0;
 
-            foreach (Bail lesBails in Bails)
+            if (Bails != null)
             {
-                loyerTotal += lesBails.Loyer;
+                foreach (Bail lesBails in Bails)
+                {
+                    loyerTotal += lesBails.Loyer;
+                }
             }
 
-            foreach (Pret pret in Prets)
+            if (Prets != null)
             {
-                mensualiteTotal += pret.calculerMensualite(pret.Montant, pret.TauxInteret, pret.Duree);
+                foreach (Pret pret in Prets)
+                {
+                    mensualiteTotal += pret.calculerMensualite(pret.Montant, pret.TauxInteret, pret.Duree);
+                }
             }
 
             loyerTotal = loyerTotal - mensualiteTotal;

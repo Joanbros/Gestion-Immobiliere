@@ -20,6 +20,14 @@ namespace Gestion_Immobilière.View.Forms
             {
                 frmBien.Navigate(new GererBoxForm());
             }
+            else if (cboTypesBien.SelectedIndex == 1 && frmBien != null)
+            {
+                frmBien.Navigate(new GererAppartementForm());
+            }
+            else if (cboTypesBien.SelectedIndex == 2 && frmBien != null)
+            {
+                frmBien.Navigate(new GererMaisonForm());
+            }
         }
     }
 }

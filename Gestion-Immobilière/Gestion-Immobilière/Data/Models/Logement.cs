@@ -12,6 +12,11 @@ namespace Gestion_Immobilière.Data.Models
         public bool Cave { get; set; }
         public bool Parking { get; set; }
 
+        public Logement() 
+        {
+
+        }
+
         public Logement(string unNom, int uneValeur, string uneAdresse, int uneSurface, int unNbPieces, int unNbChambre, bool uneCave, bool unParking)
             :base(unNom, uneValeur, uneAdresse, uneSurface)
         {

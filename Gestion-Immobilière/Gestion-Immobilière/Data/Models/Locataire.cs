@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Gestion_Immobilière.Data.Models
 {
-    internal class Locataire
+    public class Locataire
     {
         public int LocataireId { get; set; }
         public string Nom { get; set; }
@@ -18,6 +18,11 @@ namespace Gestion_Immobilière.Data.Models
             this.Prenom = unPrenom;
             this.Age = unAge;
             this.Profession = uneProfession;
+        }
+
+        public Locataire()
+        {
+
         }
 
         public override string ToString()

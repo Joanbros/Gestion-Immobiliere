@@ -13,6 +13,11 @@ namespace Gestion_Immobilière.Data.Models
 
         }
 
+        public Maison()
+        {
+
+        }
+
         public override string ToString()
         {
             string cave = "Non";

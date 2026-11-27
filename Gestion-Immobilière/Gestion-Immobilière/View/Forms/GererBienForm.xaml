@@ -21,6 +21,8 @@
                   SelectedIndex="0"
                   SelectionChanged="CboTypesBien_SelectionChanged">
             <ComboBoxItem Content="Box" Tag="Box"/>
+            <ComboBoxItem Content="Appartement" Tag="Appartement"/>
+            <ComboBoxItem Content="Maison" Tag="Maison"/>
         </ComboBox>
 
         <Frame x:Name="frmBien"

@@ -74,6 +74,8 @@ namespace Gestion_Immobilière.Migrations
                     b.HasKey("BienId");
 
                     b.ToTable("Biens");
+
+                    b.UseTptMappingStrategy();
                 });
 
             modelBuilder.Entity("Gestion_Immobilière.Data.Models.Intervention", b =>
@@ -102,6 +104,67 @@ namespace Gestion_Immobilière.Migrations
                     b.HasIndex("BienId");
 
                     b.ToTable("Interventions");
+                });
+
+            modelBuilder.Entity("Gestion_Immobilière.Data.Models.Locataire", b =>
+                {
+                    b.Property<int>("LocataireId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("LocataireId"));
+
+                    b.Property<int>("Age")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Nom")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Prenom")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Profession")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("LocataireId");
+
+                    b.ToTable("Locataires");
+                });
+
+            modelBuilder.Entity("Gestion_Immobilière.Data.Models.Prestataire", b =>
+                {
+                    b.Property<int>("PrestataireId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("PrestataireId"));
+
+                    b.Property<string>("Adresse")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Nom")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Prenom")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("RaisonSociale")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Telephone")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("PrestataireId");
+
+                    b.ToTable("Prestataires");
                 });
 
             modelBuilder.Entity("Gestion_Immobilière.Data.Models.Pret", b =>
@@ -137,6 +200,67 @@ namespace Gestion_Immobilière.Migrations
                     b.ToTable("Prets");
                 });
 
+            modelBuilder.Entity("Gestion_Immobilière.Data.Models.Box", b =>
+                {
+                    b.HasBaseType("Gestion_Immobilière.Data.Models.Bien");
+
+                    b.Property<int>("BoxId")
+                        .HasColumnType("integer");
+
+                    b.ToTable("Box", (string)null);
+                });
+
+            modelBuilder.Entity("Gestion_Immobilière.Data.Models.Logement", b =>
+                {
+                    b.HasBaseType("Gestion_Immobilière.Data.Models.Bien");
+
+                    b.Property<bool>("Cave")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("LogementId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("NbChambre")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("NbPieces")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("Parking")
+                        .HasColumnType("boolean");
+
+                    b.ToTable("Logement", (string)null);
+                });
+
+            modelBuilder.Entity("Gestion_Immobilière.Data.Models.Appartement", b =>
+                {
+                    b.HasBaseType("Gestion_Immobilière.Data.Models.Logement");
+
+                    b.Property<int>("AppartementId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Assenceur")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("ChauffCommun")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("Etage")
+                        .HasColumnType("integer");
+
+                    b.ToTable("Appartment", (string)null);
+                });
+
+            modelBuilder.Entity("Gestion_Immobilière.Data.Models.Maison", b =>
+                {
+                    b.HasBaseType("Gestion_Immobilière.Data.Models.Logement");
+
+                    b.Property<int>("MaisonId")
+                        .HasColumnType("integer");
+
+                    b.ToTable("Maison", (string)null);
+                });
+
             modelBuilder.Entity("Gestion_Immobilière.Data.Models.Bail", b =>
                 {
                     b.HasOne("Gestion_Immobilière.Data.Models.Bien", null)
@@ -156,6 +280,42 @@ namespace Gestion_Immobilière.Migrations
                     b.HasOne("Gestion_Immobilière.Data.Models.Bien", null)
                         .WithMany("Prets")
                         .HasForeignKey("BienId");
+                });
+
+            modelBuilder.Entity("Gestion_Immobilière.Data.Models.Box", b =>
+                {
+                    b.HasOne("Gestion_Immobilière.Data.Models.Bien", null)
+                        .WithOne()
+                        .HasForeignKey("Gestion_Immobilière.Data.Models.Box", "BienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Gestion_Immobilière.Data.Models.Logement", b =>
+                {
+                    b.HasOne("Gestion_Immobilière.Data.Models.Bien", null)
+                        .WithOne()
+                        .HasForeignKey("Gestion_Immobilière.Data.Models.Logement", "BienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Gestion_Immobilière.Data.Models.Appartement", b =>
+                {
+                    b.HasOne("Gestion_Immobilière.Data.Models.Logement", null)
+                        .WithOne()
+                        .HasForeignKey("Gestion_Immobilière.Data.Models.Appartement", "BienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Gestion_Immobilière.Data.Models.Maison", b =>
+                {
+                    b.HasOne("Gestion_Immobilière.Data.Models.Logement", null)
+                        .WithOne()
+                        .HasForeignKey("Gestion_Immobilière.Data.Models.Maison", "BienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Gestion_Immobilière.Data.Models.Bien", b =>

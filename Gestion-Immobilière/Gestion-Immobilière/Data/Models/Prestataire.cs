@@ -21,5 +21,10 @@ namespace Gestion_Immobilière.Data.Models
             this.Telephone = unTelephone;
             this.Adresse = uneAdresse;
         }
+
+        public Prestataire() 
+        {
+            
+        }
     }
 }
